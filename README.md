@@ -1,9 +1,7 @@
-# styled components 기초 다시하기
+# Back to the Basic. 기초 다지기
 
-> starting date : 12/05
-
-#### day1 #2.0~#2.7
-
+### styled components 기초 다시하기
+> date : 12/05
 - 스타일 컴포넌트를 사용하는 이유
   - 리액트등 JS기반 프레임워크에서는 `<div class="checker">` 등으로 지정이 어렵다
   - JS문법대로 인라인으로 지정하려 해도 backgroundColor등으로 JS문법을 사용해야 하기 때문에 가독성이 좋지 않다.
@@ -56,3 +54,6 @@
     color: ${(props) => props.theme.textColor};
   `;
   ```
+
+### TypeScript 기초 다시하기
+-
