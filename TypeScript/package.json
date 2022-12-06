@@ -1,8 +1,0 @@
-{
-  "devDependencies": {
-    "@types/styled-components": "^5.1.26"
-  },
-  "dependencies": {
-    "styled-components": "^5.3.6"
-  }
-}
