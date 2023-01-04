@@ -23,7 +23,7 @@
     animation: ${Ani} 1s infinite;
   `;
   ```
-- SASS처럼 선언된 컴포넌트 내부에 `&:hover`등으로 중첩으로 선언이 가능하고, 해당 선언은 HTML element 뿐만 아니라 컴포넌트도 ${}으로 선언이 가능함.
+- SASS처럼 선언된 컴포넌트 내부에 `&:hover`등으로 중첩으로 선언이 가능하고, 해당 선언은 HTML element 뿐만 아니라 컴포넌트도 \${}으로 선언이 가능함.
 - <b>Theme 설정 (Dark / Light Mode)</b>
 
   ```javascript react
@@ -89,3 +89,8 @@
   - 만약 선택요소와 필수요소가 섞여있을 경우 `borderColor={borderColor ?? "HEAR"}` 등으로 기본값 선언.
 - currentTarget = target
 - `event: React.MouseEvent<HTMLButtonElement>`으로 리액트 이벤트 추가가능. 외울필요는 없음.
+
+### date : 01/04
+
+- Nested Router : 한 스크린 내에 또다른 라우터를 가질 수 있는것 (중첩 라우터)
+- <> : Fragment : 비어있지만 하나로 만들어 리턴할 수 있음.
