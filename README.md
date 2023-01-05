@@ -90,7 +90,8 @@
 - currentTarget = target
 - `event: React.MouseEvent<HTMLButtonElement>`으로 리액트 이벤트 추가가능. 외울필요는 없음.
 
-### date : 01/04
+### Crypto Tracker로 공부
 
 - Nested Router : 한 스크린 내에 또다른 라우터를 가질 수 있는것 (중첩 라우터)
 - <> : Fragment : 비어있지만 하나로 만들어 리턴할 수 있음.
+- 비하인더씬 
