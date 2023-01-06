@@ -1,5 +1,7 @@
-import { createGlobalStyle } from "styled-components";
+import { useState } from "react";
+import styled, { createGlobalStyle, ThemeProvider } from "styled-components";
 import Router from "./Router";
+import { lightTheme, darkTheme } from "./theme";
 
 const GlobalStyle = createGlobalStyle`
 @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400&display=swap');
@@ -59,12 +61,29 @@ const GlobalStyle = createGlobalStyle`
   }
   * { box-sizing: border-box;}
 `;
+const ToggleBtn = styled.button`
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  border-radius: 50%;
+  border: 0;
+  text-align: center;
+`;
 
 function App() {
+  const [isDark, setIsDark] = useState(false);
+  const toggleDark = () => setIsDark((current) => !current);
   return (
     <>
-      <GlobalStyle />
-      <Router />
+      <ToggleBtn onClick={toggleDark}>
+        Mode
+        <br />
+        Change
+      </ToggleBtn>
+      <ThemeProvider theme={isDark ? darkTheme : lightTheme}>
+        <GlobalStyle />
+        <Router isDark={isDark} toggleDark={toggleDark} />
+      </ThemeProvider>
     </>
   );
 }

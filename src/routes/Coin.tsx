@@ -12,6 +12,7 @@ const Container = styled.div`
   max-width: 480px;
   margin: 0 auto;
   padding: 20px;
+  color: ${(props) => props.theme.textColor};
 `;
 const Header = styled.header`
   height: 10vh;
@@ -20,14 +21,14 @@ const Header = styled.header`
   align-items: center;
 `;
 const Title = styled.h1`
-  color: ${(props) => props.theme.accentColor};
+  color: ${(props) => props.theme.textColor};
   font-size: 48px;
 `;
 const Loader = styled.div`
   text-align: center;
 `;
 const Overview = styled.div`
-  background-color: #1f2022;
+  background-color: ${(props) => props.theme.transColor};
   border-radius: 10px;
   padding: 20px;
   text-align: center;
@@ -44,6 +45,7 @@ const HomeButton = styled.a`
   padding: 20px;
   border-radius: 10px;
   background: #1d47b6;
+  color: white;
   text-align: center;
   margin-top: 40px;
 `;
@@ -54,7 +56,7 @@ const Tabs = styled.div`
 `;
 const Tab = styled.span<{ isActive: boolean }>`
   width: 50%;
-  background-color: #1f2022;
+  background-color: ${(props) => props.theme.transColor};
   text-align: center;
   border-radius: 10px;
   color: ${(props) =>
@@ -126,7 +128,12 @@ interface PriceData {
   };
 }
 
-function Coin() {
+interface ICoinProps {
+  toggleDark: () => void;
+  isDark: boolean;
+}
+
+function Coin({ isDark }: ICoinProps) {
   /*const [loading, setLoading] = useState(true);
   const [info, setInfo] = useState<InfoData>();
   const [priceInfo, setPriceInfo] = useState<PriceData>();
@@ -203,10 +210,10 @@ function Coin() {
 
           <switch>
             <Route path={`/:coinId/price`}>
-              <Price />
+              <Price coinId={coinId} />
             </Route>
             <Route path={`/:coinId/chart`}>
-              <Chart coinId={coinId} />
+              <Chart coinId={coinId} isDark={isDark} />
             </Route>
           </switch>
           <HomeButton>

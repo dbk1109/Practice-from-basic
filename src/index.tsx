@@ -2,9 +2,9 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
-import { ThemeProvider } from "styled-components";
+//import { ThemeProvider } from "styled-components";
 import App from "./App";
-import { lightTheme, darkTheme } from "./theme";
+//import { lightTheme, darkTheme } from "./theme";
 //import { theme } from "./theme";
 
 //const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -17,10 +17,8 @@ const queryClient = new QueryClient();
 root.render(
   <div>
     <QueryClientProvider client={queryClient}>
-      <ThemeProvider theme={darkTheme}>
-        <App />
-      </ThemeProvider>
-      <ReactQueryDevtools initialIsOpen={false} />
+      <App />
+      {/*<ReactQueryDevtools initialIsOpen={false} />*/}
     </QueryClientProvider>
   </div>
 );

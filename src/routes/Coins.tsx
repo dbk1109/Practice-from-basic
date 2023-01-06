@@ -22,7 +22,7 @@ const CoinList = styled.ul``;
 
 const Coin = styled.li`
   background-color: white;
-  color: ${(props) => props.theme.bgColor};
+  color: #192a56;
   border-radius: 15px;
   margin-bottom: 10px;
   a {
@@ -39,7 +39,7 @@ const Coin = styled.li`
 `;
 
 const Title = styled.h1`
-  color: ${(props) => props.theme.accentColor};
+  color: ${(props) => props.theme.textColor};
   font-size: 48px;
 `;
 
@@ -63,7 +63,12 @@ interface ICoin {
   type: string;
 }
 
-function Coins() {
+interface ICoinsProps {
+  toggleDark: () => void;
+  isDark: boolean;
+}
+
+function Coins({ toggleDark }: ICoinsProps) {
   const { isLoading, data } = useQuery<ICoin[]>(["allCoins"], fetchCoins);
   /*const [coins, setCoins] = useState<ICoin[]>([]);
   const [loading, setLoading] = useState(true);
@@ -90,8 +95,7 @@ function Coins() {
                 to={{
                   pathname: `/${coin.id}`,
                   state: { name: coin.name },
-                }}
-              >
+                }}>
                 <Img
                   src={`https://cryptocurrencyliveprices.com/img/${coin.id}.png`}
                 />
