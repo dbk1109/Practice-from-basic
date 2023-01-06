@@ -1,7 +1,9 @@
+import { useQuery } from "react-query";
 import { useEffect, useState } from "react";
 import { Route, useLocation, useParams, useRouteMatch } from "react-router";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { fetchCoinInfo, fetchCoinTickers } from "../api";
 import Chart from "./Chart";
 import Price from "./Price";
 
@@ -125,13 +127,9 @@ interface PriceData {
 }
 
 function Coin() {
-  const [loading, setLoading] = useState(true);
-  const { coinId } = useParams<RouteParams>();
-  const { state } = useLocation<RouteState>();
+  /*const [loading, setLoading] = useState(true);
   const [info, setInfo] = useState<InfoData>();
   const [priceInfo, setPriceInfo] = useState<PriceData>();
-  const priceMatch = useRouteMatch("/:coinId/price");
-  const chartMatch = useRouteMatch("/:coinId/chart");
   useEffect(() => {
     (async () => {
       const infoData = await (
@@ -145,11 +143,24 @@ function Coin() {
       setLoading(false);
       console.log(infoData);
     })();
-  }, [coinId]);
+  }, [coinId]);*/
+  const { coinId } = useParams<RouteParams>();
+  const { state } = useLocation<RouteState>();
+  const priceMatch = useRouteMatch("/:coinId/price");
+  const chartMatch = useRouteMatch("/:coinId/chart");
+  const { isLoading: infoLoading, data: infoData } = useQuery<InfoData>(
+    ["info", coinId],
+    () => fetchCoinInfo(coinId)
+  );
+  const { isLoading: tickersLoading, data: tickersData } = useQuery<PriceData>(
+    ["tickers", coinId],
+    () => fetchCoinTickers(coinId)
+  );
+  const loading = infoLoading || tickersLoading;
   return (
     <Container>
       <Header>
-        <Title> {state?.name || info?.name} </Title>
+        <Title> {state?.name || infoData?.name} </Title>
       </Header>
       {loading ? (
         <Loader>Loading...</Loader>
@@ -158,26 +169,26 @@ function Coin() {
           <Overview>
             <div>
               <span>Rank:</span>
-              {info?.rank}
+              {infoData?.rank}
             </div>
             <div>
               <span>Symbol:</span>
-              {info?.symbol}
+              {infoData?.symbol}
             </div>
             <div>
               <span>Open Source:</span>
-              {info?.open_source ? "YES" : "NO"}
+              {infoData?.open_source ? "YES" : "NO"}
             </div>
           </Overview>
-          {info?.description}
+          {infoData?.description}
           <Overview>
             <div>
               <span>Total Supply:</span>
-              {priceInfo?.total_supply}
+              {tickersData?.total_supply}
             </div>
             <div>
               <span>Max Supply:</span>
-              {priceInfo?.max_supply}
+              {tickersData?.max_supply}
             </div>
           </Overview>
 
@@ -192,10 +203,10 @@ function Coin() {
 
           <switch>
             <Route path={`/:coinId/price`}>
-              <Price></Price>
+              <Price />
             </Route>
             <Route path={`/:coinId/chart`}>
-              <Chart></Chart>
+              <Chart coinId={coinId} />
             </Route>
           </switch>
           <HomeButton>
