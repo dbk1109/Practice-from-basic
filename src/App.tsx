@@ -71,8 +71,8 @@ const ToggleBtn = styled.button`
 `;
 
 function App() {
-  const [isDark, setIsDark] = useState(false);
-  const toggleDark = () => setIsDark((current) => !current);
+  //const [isDark, setIsDark] = useState(false);
+  //const toggleDark = () => setIsDark((current) => !current);
   return (
     <>
       <ToggleBtn onClick={toggleDark}>
@@ -82,7 +82,8 @@ function App() {
       </ToggleBtn>
       <ThemeProvider theme={isDark ? darkTheme : lightTheme}>
         <GlobalStyle />
-        <Router isDark={isDark} toggleDark={toggleDark} />
+        {/*<Router isDark={isDark} toggleDark={toggleDark} />*/}
+        <Router />
       </ThemeProvider>
     </>
   );
