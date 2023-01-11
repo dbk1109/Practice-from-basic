@@ -64,11 +64,12 @@ interface ICoin {
 }
 
 interface ICoinsProps {
-  toggleDark: () => void;
-  isDark: boolean;
+  //toggleDark: () => void;
+  //isDark: boolean;
 }
 
-function Coins({ toggleDark }: ICoinsProps) {
+function Coins({}: ICoinsProps) {
+  //function Coins({ toggleDark }: ICoinsProps) {
   const { isLoading, data } = useQuery<ICoin[]>(["allCoins"], fetchCoins);
   /*const [coins, setCoins] = useState<ICoin[]>([]);
   const [loading, setLoading] = useState(true);
